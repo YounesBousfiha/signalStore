@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "MacBook Pro M3",
+      "price": 25000,
+      "category": "Tech"
+    },
+    {
+      "id": "2",
+      "name": "Iphone 15 Pro",
+      "price": 14000,
+      "category": "Tech"
+    },
+    {
+      "id": "3",
+      "name": "Sony XM5",
+      "price": 3500,
+      "category": "Audio"
+    }
+  ]
+}
