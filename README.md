@@ -1,59 +1,74 @@
-# Livecoding
+# SignalStore Live-Coding Demo
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+This repository contains a small Angular (v21) application used for live-coding demos of reactive state management with @ngrx/signals (signalStore). The app is a product inventory demo that loads product data from a local json-server and demonstrates filtering, adding, deleting, and a computed total price.
 
-## Development server
+![Demo GIF placeholder](./src/assets/demo.gif)
 
-To start a local development server, run:
+> Replace the placeholder above with a recording of your live-coding session. Put the GIF at `src/assets/demo.gif` (or update the path below) so it will be included in the repository and visible on GitHub.
 
-```bash
-ng serve
-```
+Quick summary
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Framework: Angular 21 (standalone components)
+- State: @ngrx/signals (signalStore)
+- Backend: json-server (db.json)
 
-## Code scaffolding
+Important files
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- src/app/app.ts — root component using ProductStore
+- src/app/app.html — main UI
+- src/app/store/product.store.ts — signalStore (state, computed selectors, methods)
+- src/app/core/services/product.service.ts — API client
+- db.json — local json-server dataset
 
-```bash
-ng generate component component-name
-```
+Prerequisites
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Node.js (16+ recommended)
+- npm
 
-```bash
-ng generate --help
-```
+Run locally
 
-## Building
+1. Install dependencies:
 
-To build the project run:
+   ```bash
+   npm install
+   ```
 
-```bash
-ng build
-```
+2. Start fake backend (json-server):
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```bash
+   npx json-server --watch db.json --port 3000
+   ```
 
-## Running unit tests
+   Backend API: http://localhost:3000/products
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+3. Start Angular dev server (second terminal):
 
-```bash
-ng test
-```
+   ```bash
+   npm start
+   # or
+   ng serve
+   ```
 
-## Running end-to-end tests
+   Open the app at http://localhost:4200
 
-For end-to-end (e2e) testing, run:
+How the demo works
 
-```bash
-ng e2e
-```
+- ProductStore is provided in root (providedIn: 'root') and calls loadProducts() on init to populate state from the backend.
+- The UI binds to store.filteredProducts() and store.totalPrice()
+- Methods: loadProducts(), addProduct(...), deleteProduct(id), updateFilter(query)
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Troubleshooting
 
-## Additional Resources
+- No products visible? Verify json-server is running and returning data at http://localhost:3000/products. Check browser console/network for errors. Ensure ProductStore is not re-provided in a component providers array.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Adding a GIF
+
+- Save an animated GIF as `demo.gif` into `src/assets/`. A simple text placeholder file exists in the repo; replace it with your actual recorded GIF.
+
+Contributing
+
+- This is an educational demo. Open issues or PRs to improve the demo or docs.
+
+License
+
+- No license file included. Add one if you plan to publish.
